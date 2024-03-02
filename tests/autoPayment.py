@@ -95,8 +95,12 @@ class AutoPayment() :
 
         WebDriverWait(driver, 2 ).until( EC.element_to_be_clickable( (By.ID, "coreInsOrderBtn"))).click()
 
-        time.sleep(2)
+        # time.sleep(6)
 
+        # 주소 변경버튼
+        WebDriverWait(driver, 2).until( EC.element_to_be_clickable( (By.ID, 'xo_id_open_address_book') )).click()
+        # driver.find_element(By.ID, "xo_id_open_address_book").click()
+        time.sleep(2)
 
 
         # 종료
