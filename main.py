@@ -156,4 +156,4 @@ class main() :
         # urlTextFile.write(goods_Number)
         # urlTextFile.close()
 
-
+main.autoInput()
