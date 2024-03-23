@@ -10,6 +10,14 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import json
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
+from module.path import PathModule
+
+xPathClick = PathModule()
+
 chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)
 
@@ -22,11 +30,12 @@ with open('info.json') as file:
     PW = datas['PW']
 
 
+
 class AutoPayment() :
 
     def autoFunc() : 
-        setUrl = "3435277941"
-        productTitleCheck = "프로모션용 테스트123"
+        setUrl = "3638847117"
+        productTitleCheck = "선택형+계산형+추가구성"
         driver= webdriver.Chrome()
         driver.maximize_window()
 
@@ -67,50 +76,48 @@ class AutoPayment() :
             print("타이틀 문자 확인 불가")
 
         # 옵션 선택
-        # driver.find_element(By.CLASS_NAME, "select-item_option").click()
-        # time.sleep(2)
+        driver.find_element(By.CLASS_NAME, "select-item_option").click()
+        time.sleep(2)
 
         # 첫번재 옵션 클릭
         # driver.find_element(By.XPATH, "//*[@id='optOrderSel_0']/ul/li[1]/a").click()
         # time.sleep(2)
+        print("STARGGGTTT")
+        xPathClick.xPathClick(By, driver, "//*[@id='optOrderSel_0']/ul/li[1]/a")
 
-        # horizontal = driver.find_element(By.XPATH,"//*[@id='optOrderTxtCalcValue1']")
-        # horizontal.send_keys("10")
+        print("edddddd")
+        horizontal = driver.find_element(By.XPATH,"//*[@id='optOrderTxtCalcValue1']")
+        horizontal.send_keys("10")
 
-        # vertical = driver.find_element(By.XPATH,"//*[@id='optOrderTxtCalcValue2']")
-        # vertical.send_keys("10")
+        vertical = driver.find_element(By.XPATH,"//*[@id='optOrderTxtCalcValue2']")
+        vertical.send_keys("10")
 
-        # totalPrice = driver.find_element(By.XPATH,"//*[@id='optOrderTxtCalcPrice']")
-        # totalPrice.send_keys("10000")
+        totalPrice = driver.find_element(By.XPATH,"//*[@id='optOrderTxtCalcPrice']")
+        totalPrice.send_keys("10000")
 
-        # driver.find_element(By.ID, "optOrderTxtCalcBtn").click()
+        driver.find_element(By.ID, "optOrderTxtCalcBtn").click()
 
-        # WebDriverWait(driver, 2 ).until( EC.element_to_be_clickable( (By.CLASS_NAME, 'button__add-item') )).click()
+        WebDriverWait(driver, 2 ).until( EC.element_to_be_clickable( (By.CLASS_NAME, 'button__add-item') )).click()
 
-        # WebDriverWait(driver, 2 ).until( EC.element_to_be_clickable( (By.XPATH, "//*[@id='layer__add-item']/div[1]/div/div/div/button"))).click()
+        WebDriverWait(driver, 2 ).until( EC.element_to_be_clickable( (By.XPATH, "//*[@id='layer__add-item']/div[1]/div/div/div/button"))).click()
 
-        # driver.find_element(By.XPATH, "//*[@id='layer__add-item']/div[1]/div/div/div/ul/li[1]/a").click()
+        driver.find_element(By.XPATH, "//*[@id='layer__add-item']/div[1]/div/div/div/ul/li[1]/a").click()
 
-        # driver.find_element(By.ID, "plusOptionApplyBtn").click()
+        driver.find_element(By.ID, "plusOptionApplyBtn").click()
 
         WebDriverWait(driver, 2 ).until( EC.element_to_be_clickable( (By.ID, "coreInsOrderBtn"))).click()
 
-        # time.sleep(6)
-
         # 주소 변경버튼
-        WebDriverWait(driver, 5).until( EC.element_to_be_clickable( (By.ID, 'xo_id_add_new_address') )).click()
-        # driver.find_element(By.ID, "xo_id_open_address_book").click()
-        time.sleep(5)
-
-        # 배송지 변경
-        # driver.find_element(By.XPATH, '//*[@id="content"]/div[1]/button').click()
-        # time.sleep(10)
-
-        #배송지 추가
-        driver.find_element(By.XPATH, "//*[@id='content']/div[1]/div[1]/div[1]/div[2]/div").click()
-        deliveryName = driver.find_element(By.ID, "reciverName")
-        deliveryName.send_keys("테스트")
-        time.sleep(2)
+        # WebDriverWait(driver, 5).until( EC.element_to_be_clickable( (By.ID, 'xo_id_add_new_address') )).click()
+        # # driver.find_element(By.ID, "xo_id_open_address_book").click()
+        
+        # #frame 변경
+        # box2 = driver.find_element(By.CLASS_NAME,"box__iframe")
+        # driver.switch_to.frame(box2.find_element(By.TAG_NAME,"iframe"))
+        # #배송지 추가
+        # driver.find_element(By.ID,"deliveryName").send_keys("")
+        # driver.find_element(By.ID,"deliveryName").send_keys("강남 테스트")
+        # time.sleep(2)
         # driver.find_element(By.ID, "reciverName").send_keys("홍길동")
         # time.sleep(2)
         # driver.find_element(By.ID, "hpNo").send_keys("01011112222")
@@ -118,8 +125,49 @@ class AutoPayment() :
         # driver.find_element(By.ID, "zipCodeSearchButton").click()
         # time.sleep(2)
 
-        # driver.find_element(By.XPATH, "//*[@ id='container']/div/div/div[1]/div[1]/div[1]/form/input").send_keys("강남")
+        # #frame 변경        
+        # driver.switch_to.frame("addr_search_frame")
+        # print("fraime")
+        # driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div/div[1]/div[1]/div[1]/form/input").click()
+        # time.sleep(2)
+        # driver.find_element(By.CLASS_NAME,"input_search").send_keys("강남")
+        # time.sleep(2)
+        # driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div/div[1]/div[1]/div[1]/button[2]").click()
+        # time.sleep(2)
+        # driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div/div[1]/div[6]/div[2]/ul/li[1]").click()
+        # time.sleep(2)
+        # driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div/div[1]/div[4]/div[2]/a").click()
+        # time.sleep(2)
+        # print("------>")
+        # driver.switch_to.default_content()
+        # box2 = driver.find_element(By.CLASS_NAME,"box__iframe")
+        # driver.switch_to.frame(box2.find_element(By.TAG_NAME,"iframe"))
+        # time.sleep(2)
+        # #상세정보
+        # driver.find_element(By.ID,"backAddress").send_keys("1번출구")
+        # time.sleep(2)
+        # driver.find_element(By.XPATH,"/html/body/div[1]/div[3]/div/div/div[1]/div[2]/form/div/button[2]").click()
+        # time.sleep(2)
+        # driver.find_element(By.XPATH,"/html/body/div[1]/div[3]/div/div/div[3]/div/div[2]/button[2]").click()
+        # time.sleep(4)
+        time.sleep(2)
+        # 체크박스
+        driver.find_element(By.XPATH,"/html/body/div[2]/div[2]/div[2]/div/div[1]/div[2]/div/div/div[2]").click()
+        time.sleep(2)
+        driver.find_element(By.XPATH,"/html/body/div[2]/div[2]/div[2]/div/div[1]/div[2]/div/div/div[3]").click()
+        time.sleep(2)
 
+        #일반결제
+        driver.find_element(By.XPATH,"/html/body/div[2]/div[2]/div[2]/div/div[1]/section/div/div/div[2]/div[2]/div/label").click()
+        time.sleep(2)
+
+        #무통장
+        driver.find_element(By.XPATH,"/html/body/div[2]/div[2]/div[2]/div/div[1]/section/div/div/div[2]/div[2]/div[2]/div/ul/li[3]").click()
+        time.sleep(2)
+        driver.find_element(By.XPATH,"/html/body/div[2]/div[2]/div[2]/div/div[1]/section/div/div/div[2]/div[2]/div[2]/div/div/div/ul/li[2]/a").click()
+        time.sleep(3)
+        
+        
 
         # 종료
         print("종료중")
